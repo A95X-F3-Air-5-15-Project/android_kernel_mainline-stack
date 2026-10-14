@@ -1,0 +1,21 @@
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+exports_files(["Makefile"])
+
+filegroup(
+    name = "rtw88_srcs",
+    srcs = glob(
+        [
+            "Makefile",
+            "compat/**",
+            "rtw88/**",
+        ],
+    ),
+)
+
+filegroup(
+    name = "rtw88_firmware",
+    srcs = glob(["firmware/**"]),
+)
