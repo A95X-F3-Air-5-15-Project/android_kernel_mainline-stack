@@ -12,7 +12,7 @@
 
 ifneq ($(KERNELRELEASE),)
 
-RTW88_ROOT := $(abspath $(srctree)/$(src))
+RTW88_ROOT := $(abspath $(if $(filter /%,$(src)),$(src),$(srctree)/$(src)))
 
 # rtw88/Makefile is the upstream Kbuild file: pick the SDIO chips.
 export CONFIG_RTW88_CORE := m
@@ -34,6 +34,10 @@ obj-m += rtw88/
 # sources themselves never need to know which kernel they build for.
 subdir-ccflags-y += -include $(RTW88_ROOT)/compat/compat.h \
 		    -I$(RTW88_ROOT)/../compat/include
+
+# The sources declare variables in for loops, which needs C99 or later;
+# the kernel itself builds with gnu11 since Linux 5.18.
+subdir-ccflags-y += -std=gnu11
 
 else
 

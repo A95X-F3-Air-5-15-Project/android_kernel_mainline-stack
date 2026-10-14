@@ -196,7 +196,11 @@ legacy:
 	si->ra_report.desc_rate = rate;
 	si->ra_report.bit_rate = bit_rate;
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0)
 	sta->deflink.agg.max_rc_amsdu_len = get_max_amsdu_len(bit_rate);
+#else
+	sta->max_rc_amsdu_len = get_max_amsdu_len(bit_rate);
+#endif
 }
 
 static void rtw_fw_ra_report_handle(struct rtw_dev *rtwdev, u8 *payload,

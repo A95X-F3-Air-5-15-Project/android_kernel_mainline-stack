@@ -23,10 +23,15 @@ static struct sdio_driver rtw_8822cs_driver = {
 	.name = KBUILD_MODNAME,
 	.probe = rtw_sdio_probe,
 	.remove = rtw_sdio_remove,
+#ifndef RTW88_COMPAT_SDIO_DRIVER_NO_SHUTDOWN
 	.shutdown = rtw_sdio_shutdown,
+#endif
 	.id_table = rtw_8822cs_id_table,
 	.drv = {
 		.pm = &rtw_sdio_pm_ops,
+#ifdef RTW88_COMPAT_SDIO_DRIVER_NO_SHUTDOWN
+		.shutdown = rtw_sdio_compat_shutdown,
+#endif
 	}
 };
 module_sdio_driver(rtw_8822cs_driver);
