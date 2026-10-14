@@ -1,0 +1,27 @@
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+exports_files(["Makefile"])
+
+filegroup(
+    name = "mt7668_srcs",
+    srcs = glob(
+        [
+            "Makefile",
+            "compat/**",
+            "wlan/**",
+        ],
+    ),
+)
+
+# Headers bluetooth/ is built with on older kernels; see bluetooth/Makefile.
+filegroup(
+    name = "mt7668_bt_compat_srcs",
+    srcs = glob(["compat/bluetooth/**"]),
+)
+
+filegroup(
+    name = "mt7668_firmware",
+    srcs = glob(["firmware/**"]),
+)
