@@ -14,8 +14,9 @@ BT_COMPAT := $(BT_SRC)/../compat/bluetooth
 obj-m += btmtk.o btmtksdio.o
 
 # compat.h is force-included into every object; hci_uart.h and
-# linux/unaligned.h are found through the include paths.
-ccflags-y += -I$(BT_COMPAT) -I$(BT_COMPAT)/include \
+# linux/unaligned.h (../../compat/include) are found through the include
+# paths.
+ccflags-y += -I$(BT_COMPAT) -I$(BT_SRC)/../../compat/include \
 	     -include $(BT_COMPAT)/compat.h
 
 else

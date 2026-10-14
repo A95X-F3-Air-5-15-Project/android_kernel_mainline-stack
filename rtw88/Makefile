@@ -33,7 +33,7 @@ obj-m += rtw88/
 # compat.h is force-included into every rtw88/ object, so the driver
 # sources themselves never need to know which kernel they build for.
 subdir-ccflags-y += -include $(RTW88_ROOT)/compat/compat.h \
-		    -I$(RTW88_ROOT)/compat/include
+		    -I$(RTW88_ROOT)/../compat/include
 
 else
 

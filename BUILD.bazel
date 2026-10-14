@@ -1,0 +1,9 @@
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+# Backports shared by all drivers; each driver adds its own compat/.
+filegroup(
+    name = "compat_srcs",
+    srcs = glob(["compat/**"]),
+)
